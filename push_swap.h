@@ -6,7 +6,7 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:57:05 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/01 19:40:20 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/06/15 21:17:20 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -18,6 +18,7 @@ typedef struct s_list
 {
 	int				content;
 	int				position;
+	char			*binario;
 	struct s_list	*next;
 }			t_list;
 
@@ -30,5 +31,6 @@ int    *ft_sort_int_tab(int *tab, int size);
 void    swap(t_list *a);
 void    pb(t_list *a, t_list *b);
 void    pa(t_list *a, t_list *b);
+void    ra(t_list *a);
 
 #endif

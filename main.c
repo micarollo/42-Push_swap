@@ -6,7 +6,7 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:15:19 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/01 20:31:27 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/06/15 21:28:33 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		printf("argc = %d\n", argc);
+		//printf("argc = %d\n", argc);
 		j = 0;
 		k = 1;
 		len_stack = argc - 1;
@@ -74,54 +74,30 @@ int	main(int argc, char *argv[])
 					new = ft_lstnew(stack_i[i]);
 					new->position = y;
 					ft_lstadd_back(a, new);
-					printf("content: %d\n", new->content);
+					//printf("content: %d\n", new->content);
 				}
 				y++;
 			}
 			i++;
 		}
-		//printf("a->next: %d\n", a->next->content);
-		//IMPRIMIENDO LA LISTA
-		/*
-		temp = a->next;
-		while (temp != NULL)
-		{
-			printf("POSITION DESDE LIST: (%d)\n", temp->position);
-			printf("CONTENT DESDE LIST: (%d)\n", temp->content);
-			temp = temp->next;
-			}*/
-		//printf("A: %d\n", a->next->position);
-		//BUSCAR UNA POSICION EN LA LISTA
-		/*temp = a->next;
-		while (temp != NULL)
-		{
-			if (temp->position == 0)
-			{
-				printf("BUSCANDO POS 0: %d\n", temp->content);
-				break;
-			}
-			else
-				temp = temp->next;
-				}*/
-		//RA
-		//temp = a->next;
-		//printf("RA: %d\n", temp->content);
 		temp = ft_lstlast(a);
 		printf("ultimo: %d\n", temp->content);
-		
+		//pb(a, b);
+		ra(a);
+		ra(a);
 		temp = a->next;
-                while (temp != NULL)
-                {
-                        printf("A position: (%d)\n", temp->position);
-                        printf("A content: %d\n", temp->content);
-                        temp = temp->next;
-                }
+		while (temp != NULL)
+		{
+			printf("A position: (%d)\n", temp->position);
+			printf("A content: %d\n", temp->content);
+			temp = temp->next;
+		}
 		temp = b->next;
-                while (temp != NULL)
-                {
-                        printf("B position: (%d)\n", temp->position);
-                        printf("B content: %d\n", temp->content);
-                        temp = temp->next;
+		while (temp != NULL)
+		{
+			printf("B position: (%d)\n", temp->position);
+			printf("B content: %d\n", temp->content);
+			temp = temp->next;
 		}
 	}
 }
