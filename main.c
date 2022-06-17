@@ -6,10 +6,47 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:15:19 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/15 21:28:33 by mrollo           ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+void	binario(t_list *a, t_list *b)
+{
+	t_list *aux;
+	int temp;
+	//int i;
+
+	aux = a->next; 
+	while (aux != NULL)
+	{
+		temp = aux->position & 1;
+		if (temp)
+			ra(a);
+		else
+			pb(a, b);
+		printf("[aux->content: %d]\n", aux->content);
+		aux = aux->next;
+	}
+	/*while (a->next->position)
+	{
+		temp = a->next->position & 1;
+		if (temp)
+		{
+			ra(a);
+			//b[i] = '1';
+		}
+		else
+		{
+			pb(a, b);
+			//b[i] = '0';
+		//printf("b[i]: %c ", b[i]);
+		}
+		//i++;
+		//n = n >> 1;
+		}*/
+	//printf("\n");
+}
 
 int	main(int argc, char *argv[])
 {
@@ -82,21 +119,23 @@ int	main(int argc, char *argv[])
 		}
 		temp = ft_lstlast(a);
 		printf("ultimo: %d\n", temp->content);
+		// OPERACIONES
 		//pb(a, b);
-		ra(a);
-		ra(a);
+		//ra(a);
+		//ra(a);
+		binario(a, b);
 		temp = a->next;
 		while (temp != NULL)
 		{
-			printf("A position: (%d)\n", temp->position);
-			printf("A content: %d\n", temp->content);
+			printf("A position: (%d) ", temp->position);
+			printf("content: %d\n", temp->content);
 			temp = temp->next;
 		}
 		temp = b->next;
 		while (temp != NULL)
 		{
-			printf("B position: (%d)\n", temp->position);
-			printf("B content: %d\n", temp->content);
+			printf("B position: (%d) ", temp->position);
+			printf("content: %d\n", temp->content);
 			temp = temp->next;
 		}
 	}
