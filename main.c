@@ -11,41 +11,37 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	binario(t_list *a, t_list *b)
+int	count_bit(int n)
 {
-	t_list *aux;
+	int i;
 	int temp;
-	//int i;
 
-	aux = a->next; 
-	while (aux != NULL)
+	i = 0;
+	while (n)
 	{
-		temp = aux->position & 1;
-		if (temp)
-			ra(a);
-		else
-			pb(a, b);
-		printf("[aux->content: %d]\n", aux->content);
-		aux = aux->next;
+		temp = n & 1;
+		i++;
+		n = n >> 1;
 	}
-	/*while (a->next->position)
+	return (i);
+}
+
+void	sort(t_list *a, t_list *b, int len_stack)
+{
+	int	bit;
+	int i;
+	int j;
+
+	bit = count_bit(len_stack);
+	i = 0;
+	while (i < bit)
 	{
-		temp = a->next->position & 1;
-		if (temp)
+		j = 0;
+		while (j < len_stack)
 		{
-			ra(a);
-			//b[i] = '1';
+			
 		}
-		else
-		{
-			pb(a, b);
-			//b[i] = '0';
-		//printf("b[i]: %c ", b[i]);
-		}
-		//i++;
-		//n = n >> 1;
-		}*/
-	//printf("\n");
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -123,7 +119,8 @@ int	main(int argc, char *argv[])
 		//pb(a, b);
 		//ra(a);
 		//ra(a);
-		binario(a, b);
+		printf("len_stack: %d\n", len_stack);
+		printf("bits: %d\n", count_bit(len_stack));
 		temp = a->next;
 		while (temp != NULL)
 		{
