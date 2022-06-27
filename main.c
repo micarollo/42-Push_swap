@@ -6,10 +6,24 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:15:19 by mrollo            #+#    #+#             */
-
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+int is_sorted(t_list *a)
+{
+	t_list *temp;
+
+	temp = a->next;
+	while (temp->next != NULL)
+	{
+		printf("temp->position: %d\n", temp->position);
+		if (temp->position > temp->next->position)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
 
 int	count_bit(int n)
 {
@@ -28,19 +42,39 @@ int	count_bit(int n)
 
 void	sort(t_list *a, t_list *b, int len_stack)
 {
+	(void)b;
 	int	bit;
 	int i;
 	int j;
+	int n;
+	int temp;
 
 	bit = count_bit(len_stack);
+	printf("bits desde sort: %d\n", bit);
 	i = 0;
 	while (i < bit)
 	{
+		printf("hola");
 		j = 0;
 		while (j < len_stack)
 		{
-			
+			n = a->next->position;
+			n = n >> i;
+			temp = n & 1;
+			if (temp)
+			{
+				//printf("%d", temp);
+				ra(a);
+			}
+			else
+			{
+				printf("0");
+				//pb(a, b);
+			}
+			j++;
 		}
+		printf("chau");
+		i++;
 	}
 }
 
@@ -69,11 +103,9 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		//printf("argc = %d\n", argc);
 		j = 0;
 		k = 1;
 		len_stack = argc - 1;
-		//stack = (char **)malloc(sizeof(char *));
 		stack_i = (int *)malloc(argc * sizeof(int));
 		//CREANDO EL ARRAY DE LOS ARGUMENTOS
 		while (j < len_stack)
@@ -113,14 +145,9 @@ int	main(int argc, char *argv[])
 			}
 			i++;
 		}
-		temp = ft_lstlast(a);
-		printf("ultimo: %d\n", temp->content);
-		// OPERACIONES
-		//pb(a, b);
-		//ra(a);
-		//ra(a);
 		printf("len_stack: %d\n", len_stack);
-		printf("bits: %d\n", count_bit(len_stack));
+		printf("is sorted: %d\n", is_sorted(a));
+		//sort(a, b, len_stack);
 		temp = a->next;
 		while (temp != NULL)
 		{
