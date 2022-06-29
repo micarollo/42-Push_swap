@@ -10,6 +10,27 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+void	clean_b(t_list *a, t_list *b)
+{
+	t_list *temp;
+	int i;
+	int count;
+
+	i = 0;
+	temp = b->next;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		i++;
+	}
+	count = 0;
+	while (count < i)
+	{
+		pa(a, b);
+		count++;
+	}
+}
+
 int is_sorted(t_list *a)
 {
 	t_list *temp;
@@ -17,7 +38,6 @@ int is_sorted(t_list *a)
 	temp = a->next;
 	while (temp->next != NULL)
 	{
-		printf("temp->position: %d\n", temp->position);
 		if (temp->position > temp->next->position)
 			return (0);
 		temp = temp->next;
@@ -42,7 +62,6 @@ int	count_bit(int n)
 
 void	sort(t_list *a, t_list *b, int len_stack)
 {
-	(void)b;
 	int	bit;
 	int i;
 	int j;
@@ -50,11 +69,9 @@ void	sort(t_list *a, t_list *b, int len_stack)
 	int temp;
 
 	bit = count_bit(len_stack);
-	printf("bits desde sort: %d\n", bit);
 	i = 0;
-	while (i < bit)
+	while (is_sorted(a) == 0 && i < bit)
 	{
-		printf("hola");
 		j = 0;
 		while (j < len_stack)
 		{
@@ -62,18 +79,12 @@ void	sort(t_list *a, t_list *b, int len_stack)
 			n = n >> i;
 			temp = n & 1;
 			if (temp)
-			{
-				//printf("%d", temp);
 				ra(a);
-			}
 			else
-			{
-				printf("0");
-				//pb(a, b);
-			}
+				pb(a, b);
 			j++;
 		}
-		printf("chau");
+		clean_b(a, b);
 		i++;
 	}
 }
@@ -81,7 +92,6 @@ void	sort(t_list *a, t_list *b, int len_stack)
 int	main(int argc, char *argv[])
 {
 	int	len_stack;
-	//char **stack;
 	int *stack_i;
 	int *stack_i_copy;
 	int j;
@@ -92,7 +102,6 @@ int	main(int argc, char *argv[])
 	t_list *a;
 	t_list *b;
 	t_list *new;
-	//int x;
 	int y;
 	t_list *temp;
 
@@ -118,7 +127,7 @@ int	main(int argc, char *argv[])
 		stack_i_copy = (int *)malloc(argc * sizeof(int));
 		//COPIA DE STACK_I
 		i = 0;
-		while (stack_i[i])
+		while (i < len_stack)
 		{
 			stack_i_copy[i] = stack_i[i];
 			i++;
@@ -129,36 +138,28 @@ int	main(int argc, char *argv[])
 		a = (t_list *)malloc(sizeof(t_list));
 		b = (t_list *)malloc(sizeof(t_list));
 		i = 0;
-		while (stack_i[i])
+		while (i < len_stack)
 		{
 			y = 0;
-			while (tab[y])
+			while (y < len_stack)
 			{
 				if (stack_i[i] == tab[y])
 				{
 					new = ft_lstnew(stack_i[i]);
 					new->position = y;
 					ft_lstadd_back(a, new);
-					//printf("content: %d\n", new->content);
 				}
 				y++;
 			}
 			i++;
 		}
 		printf("len_stack: %d\n", len_stack);
-		printf("is sorted: %d\n", is_sorted(a));
-		//sort(a, b, len_stack);
+		sort(a, b, len_stack);
+		//IMPRIMIR CONTENIDO LISTAS
 		temp = a->next;
 		while (temp != NULL)
 		{
 			printf("A position: (%d) ", temp->position);
-			printf("content: %d\n", temp->content);
-			temp = temp->next;
-		}
-		temp = b->next;
-		while (temp != NULL)
-		{
-			printf("B position: (%d) ", temp->position);
 			printf("content: %d\n", temp->content);
 			temp = temp->next;
 		}

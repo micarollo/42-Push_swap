@@ -6,25 +6,10 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 20:39:45 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/15 20:39:48 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/06/29 15:29:00 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-void	swap(t_list *a)
-{
-	t_list *aux1;
-  	t_list *aux2;
-
-	aux1 = a->next; //8                                                                                             
-	aux2 = aux1->next->next;
-	//printf("aux1: %d\n", aux1->content);                                                                          
-	//printf("aux2: %d\n", aux2->content);                                                                          
-    a->next = a->next->next;
-	//printf("elemento 1: %d\n", a->next->content);
-	aux1->next = aux2;
-	a->next->next = aux1;
-}
 
 void	pb(t_list *a, t_list *b)
 {
@@ -38,6 +23,7 @@ void	pb(t_list *a, t_list *b)
 	a->next = auxa;
 	b->next = a_to_b;
 	b->next->next = auxb;
+	write(1, "pb\n", 3);
 }
 
 void    pa(t_list *a, t_list *b)
@@ -52,6 +38,7 @@ void    pa(t_list *a, t_list *b)
 	a->next = b_to_a;
 	b->next = auxb;
 	a->next->next = auxa;
+	write(1, "pa\n", 3);
 }
 
 void	ra(t_list *a)
@@ -70,4 +57,5 @@ void	ra(t_list *a)
 	//printf("a->next: %d\n", a->next->content);
 	end->next = first;
 	first->next = NULL;
+	write(1, "ra\n", 3);
 }
