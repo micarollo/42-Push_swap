@@ -6,10 +6,25 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 20:39:45 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/29 15:29:00 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/06/29 18:12:57 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+void	swap(t_list *a)
+{
+	t_list *aux1;
+  	t_list *aux2;
+
+	aux1 = a->next; //8                                                                                             
+	aux2 = aux1->next->next;
+	//printf("aux1: %d\n", aux1->content);                                                                          
+	//printf("aux2: %d\n", aux2->content);                                                                          
+    a->next = a->next->next;
+	//printf("elemento 1: %d\n", a->next->content);
+	aux1->next = aux2;
+	a->next->next = aux1;
+}
 
 void	pb(t_list *a, t_list *b)
 {

@@ -6,7 +6,7 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:57:05 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/29 15:29:35 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/06/29 18:13:09 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -23,7 +23,6 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-//char    **ft_split(char const *s, char c);
 t_list  *ft_lstlast(t_list *lst);
 void    ft_lstadd_back(t_list *lst, t_list *new);
 t_list  *ft_lstnew(int content);
@@ -32,5 +31,8 @@ int    *ft_sort_int_tab(int *tab, int size);
 void    pb(t_list *a, t_list *b);
 void    pa(t_list *a, t_list *b);
 void    ra(t_list *a);
+int check_doubles(int *stack, int len);
+//void	check_stack(int *stack, int len);
+void    swap(t_list *a);
 
 #endif

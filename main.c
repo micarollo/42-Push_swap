@@ -124,6 +124,7 @@ int	main(int argc, char *argv[])
 			j++;
 			k++;
 		}
+		check_doubles(stack_i, len_stack);
 		stack_i_copy = (int *)malloc(argc * sizeof(int));
 		//COPIA DE STACK_I
 		i = 0;
@@ -153,7 +154,6 @@ int	main(int argc, char *argv[])
 			}
 			i++;
 		}
-		printf("len_stack: %d\n", len_stack);
 		sort(a, b, len_stack);
 		//IMPRIMIR CONTENIDO LISTAS
 		temp = a->next;
@@ -161,7 +161,7 @@ int	main(int argc, char *argv[])
 		{
 			printf("A position: (%d) ", temp->position);
 			printf("content: %d\n", temp->content);
-			temp = temp->next;
+		 	temp = temp->next;
 		}
 	}
 }
