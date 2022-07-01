@@ -60,6 +60,41 @@ int	count_bit(int n)
 	return (i);
 }
 
+void	quick_sort(t_list *a, int len_stack)
+{
+	t_list *last;
+
+	last = ft_lstlast(a); 
+	if (len_stack == 2)
+	{
+		if (a->next->position > a->next->next->position)
+			sa(a);
+	}
+	else if (len_stack == 3)
+	{
+		if (a->next->position > a->next->next->position && a->next->position > last->position)
+			ra(a);
+		else if (a->next->position < a->next->next->position && last->position < a->next->position)
+		{
+			ra(a);
+			ra(a);
+		}
+		else if (a->next->position > a->next->next->position && last->position > a->next->position)
+			sa(a);
+		else if (a->next->position < last->position && a->next->next->position > last->position)
+		{
+			sa(a);
+			ra(a);
+		}
+		else if (a->next->position > a->next->next->position && a->next->next->position > last->position)
+		{
+			sa(a);
+			ra(a);
+			ra(a);
+		}
+	}
+}
+
 void	sort(t_list *a, t_list *b, int len_stack)
 {
 	int	bit;
@@ -135,6 +170,7 @@ int	main(int argc, char *argv[])
 		}
 		tab = (int *)malloc(len_stack * sizeof(int));
 		tab = ft_sort_int_tab(stack_i_copy, len_stack);
+		//free (stack_i_copy);
 		//INI STACK
 		a = (t_list *)malloc(sizeof(t_list));
 		b = (t_list *)malloc(sizeof(t_list));
@@ -154,14 +190,23 @@ int	main(int argc, char *argv[])
 			}
 			i++;
 		}
-		sort(a, b, len_stack);
+		free (stack_i);
+		free (tab);
+		printf("nums: %d\n", len_stack);
+		temp = ft_lstlast(a);
+		printf("last: %d\n", temp->position);
+		printf("ultimo: %d\n", a->next->next->next->position);
+		if (len_stack <= 3)
+			quick_sort(a, len_stack);
+		else
+			sort(a, b, len_stack);
 		//IMPRIMIR CONTENIDO LISTAS
-		temp = a->next;
-		while (temp != NULL)
-		{
-			printf("A position: (%d) ", temp->position);
-			printf("content: %d\n", temp->content);
-		 	temp = temp->next;
-		}
+		/* temp = a->next; */
+		/* while (temp != NULL) */
+		/* { */
+		/* 	printf("A position: (%d) ", temp->position); */
+		/* 	printf("content: %d\n", temp->content); */
+		/*  	temp = temp->next; */
+		/* } */
 	}
 }

@@ -6,12 +6,12 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 20:39:45 by mrollo            #+#    #+#             */
-/*   Updated: 2022/06/29 18:12:57 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/07/01 18:48:45 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	swap(t_list *a)
+void	sa(t_list *a)
 {
 	t_list *aux1;
   	t_list *aux2;
