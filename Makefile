@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRC = main.c utils.c operations.c check.c
+SRC = main.c utils.c operations.c check.c print_lst.c
 
 OBJ = ${SRC:.c=.o}
 

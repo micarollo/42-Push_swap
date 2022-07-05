@@ -4,7 +4,7 @@
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                            +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:15:19 by mrollo            #+#    #+#             */
 /*                                                                            */
 /* ************************************************************************** */
@@ -72,7 +72,7 @@ void	quick_sort(t_list *a, int len_stack)
 	}
 	else if (len_stack == 3)
 	{
-		if (a->next->position > a->next->next->position && a->next->position > last->position)
+		if (a->next->position > a->next->next->position && a->next->position > last->position && last->position > a->next->next->position)
 			ra(a);
 		else if (a->next->position < a->next->next->position && last->position < a->next->position)
 		{
@@ -80,7 +80,9 @@ void	quick_sort(t_list *a, int len_stack)
 			ra(a);
 		}
 		else if (a->next->position > a->next->next->position && last->position > a->next->position)
+		{
 			sa(a);
+		}
 		else if (a->next->position < last->position && a->next->next->position > last->position)
 		{
 			sa(a);
@@ -88,11 +90,22 @@ void	quick_sort(t_list *a, int len_stack)
 		}
 		else if (a->next->position > a->next->next->position && a->next->next->position > last->position)
 		{
+			ra(a);
 			sa(a);
-			ra(a);
-			ra(a);
 		}
 	}
+}
+
+void	quick_sort_5(t_list *a, t_list *b, int len_stack)
+{
+	if (len_stack == 5)
+	{
+		pb(a, b);
+		pb(a, b);
+		quick_sort(a, 3);
+	}
+	if (b->next->position > b->next->next->position)
+		sb(b);
 }
 
 void	sort(t_list *a, t_list *b, int len_stack)
@@ -138,7 +151,7 @@ int	main(int argc, char *argv[])
 	t_list *b;
 	t_list *new;
 	int y;
-	t_list *temp;
+//	t_list *temp;
 
 	if (argc < 2)
 	{
@@ -192,21 +205,13 @@ int	main(int argc, char *argv[])
 		}
 		free (stack_i);
 		free (tab);
-		printf("nums: %d\n", len_stack);
-		temp = ft_lstlast(a);
-		printf("last: %d\n", temp->position);
-		printf("ultimo: %d\n", a->next->next->next->position);
 		if (len_stack <= 3)
 			quick_sort(a, len_stack);
+		else if (len_stack == 5)
+			quick_sort_5(a, b, len_stack);
 		else
 			sort(a, b, len_stack);
 		//IMPRIMIR CONTENIDO LISTAS
-		/* temp = a->next; */
-		/* while (temp != NULL) */
-		/* { */
-		/* 	printf("A position: (%d) ", temp->position); */
-		/* 	printf("content: %d\n", temp->content); */
-		/*  	temp = temp->next; */
-		/* } */
+		print_lst(a, b);
 	}
 }
