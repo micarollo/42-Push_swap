@@ -6,7 +6,7 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:57:05 by mrollo            #+#    #+#             */
-/*   Updated: 2022/07/05 15:22:09 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/07/18 13:01:58 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -37,5 +37,6 @@ void    sa(t_list *a);
 void    sb(t_list *b);
 void	quick_sort(t_list *a, int len_stack);
 void	print_lst(t_list *a, t_list *b);
+void	rra(t_list *a);
 
 #endif

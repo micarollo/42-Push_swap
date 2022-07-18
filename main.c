@@ -72,6 +72,7 @@ void	quick_sort(t_list *a, int len_stack)
 	}
 	else if (len_stack == 3)
 	{
+		printf("detro de sort\n");
 		if (a->next->position > a->next->next->position && a->next->position > last->position && last->position > a->next->next->position)
 			ra(a);
 		else if (a->next->position < a->next->next->position && last->position < a->next->position)
@@ -96,16 +97,94 @@ void	quick_sort(t_list *a, int len_stack)
 	}
 }
 
-void	quick_sort_5(t_list *a, t_list *b, int len_stack)
+void	sort_n1(t_list *a, t_list *b)
 {
-	if (len_stack == 5)
+	t_list *last;
+	t_list *first;
+
+	first = a->next;
+    last = ft_lstlast(a);
+	if (b->next->position < first->position)
+		pa(a, b);
+	else if (b->next->position > last->position)
 	{
-		pb(a, b);
-		pb(a, b);
-		quick_sort(a, 3);
+		pa(a, b);
+		ra(a);
 	}
-	if (b->next->position > b->next->next->position)
-		sb(b);
+    else
+	{
+		if (b->next->position > a->next->position && b->next->position < a->next->next->position)
+		{
+			pa(a, b);
+			sa(a);
+		}
+		else
+		{
+			rra(a);
+			pa(a, b);
+			ra(a);
+			ra(a);
+		}
+    }
+		
+}
+
+void    sort_n2(t_list *a, t_list *b)
+{
+	t_list *last;
+    t_list *first;
+
+    first = a->next;
+    last = ft_lstlast(a);
+    if (b->next->position < first->position)
+        pa(a, b);
+    else if (b->next->position > last->position)
+    {
+        pa(a, b);
+        ra(a);
+    }
+	else if (b->next->position > a->next->next->next->position)
+	{
+        rra(a);
+        pa(a, b);
+        ra(a);
+        ra(a);
+	}
+	else
+	{
+		if (b->next->position > a->next->position && b->next->position < a->next->next->position)
+        {
+            pa(a, b);
+            sa(a);
+        }
+		else
+		{
+			ra(a);
+			pa(a, b);
+			sa(a);
+			rra(a);
+		}
+	}
+		
+}
+
+void	quick_sort_5(t_list *a, t_list *b)
+{
+	pb(a, b);
+	pb(a, b);
+	quick_sort(a, 3);
+	sort_n1(a, b);
+	sort_n2(a, b);
+}
+
+void	quick_sort_4(t_list *a, t_list *b)
+{
+	pb(a, b);
+    pb(a, b);
+	printf("aqui\n");
+    quick_sort(a, 3);
+	printf("sort\n");
+	sort_n1(a, b);
 }
 
 void	sort(t_list *a, t_list *b, int len_stack)
@@ -207,8 +286,10 @@ int	main(int argc, char *argv[])
 		free (tab);
 		if (len_stack <= 3)
 			quick_sort(a, len_stack);
+		else if (len_stack == 4)
+			quick_sort_4(a, b); //PROBLEMAS!!!!
 		else if (len_stack == 5)
-			quick_sort_5(a, b, len_stack);
+			quick_sort_5(a, b);
 		else
 			sort(a, b, len_stack);
 		//IMPRIMIR CONTENIDO LISTAS

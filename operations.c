@@ -85,3 +85,38 @@ void	ra(t_list *a)
 	first->next = NULL;
 	write(1, "ra\n", 3);
 }
+
+void	rra(t_list *a)
+{
+	t_list	*n1;
+	t_list	*n2;
+	t_list	*n3;
+	t_list	*temp;
+
+	n1 = a->next;
+	temp = n1;
+//	printf("N1 == (%i)\n", n1->content);
+	n2 = NULL;
+	while (temp != NULL)
+	{
+		if (temp->next->next == NULL)
+		{
+			//printf("EL NUEVO ULTIMO SERA == (%i)\n", temp->content);
+			n2 = temp;
+			break;
+		}
+		//printf("CONTENT == (%i)\n", temp->content);
+		temp = temp->next;
+	}
+
+
+//	printf("N2 == (%i)\n", n2->content);
+
+	n3 = ft_lstlast(a);
+//	printf("N3 == (%i)\n", n3->content);
+
+	a->next = n3;
+	a->next->next = n1;
+	n2->next = NULL;
+	write(1, "rra\n", 4);
+}
