@@ -6,7 +6,7 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:57:05 by mrollo            #+#    #+#             */
-/*   Updated: 2022/07/18 13:01:58 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/07/27 17:54:47 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -23,20 +23,28 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-t_list  *ft_lstlast(t_list *lst);
-void    ft_lstadd_back(t_list *lst, t_list *new);
-t_list  *ft_lstnew(int content);
-void    ft_swap(int *a, int *b);
-int    *ft_sort_int_tab(int *tab, int size);
-void    pb(t_list *a, t_list *b);
-void    pa(t_list *a, t_list *b);
-void    ra(t_list *a);
-int check_doubles(int *stack, int len);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list *lst, t_list *new);
+t_list	*ft_lstnew(int content);
+void	ft_swap(int *a, int *b);
+int		*ft_sort_int_tab(int *tab, int size);
+void	pb(t_list *a, t_list *b);
+void	pa(t_list *a, t_list *b);
+void	ra(t_list *a);
+int		check_doubles(int *stack, int len);
 //void	check_stack(int *stack, int len);
-void    sa(t_list *a);
-void    sb(t_list *b);
-void	quick_sort(t_list *a, int len_stack);
+void	sa(t_list *a);
+void	sb(t_list *b);
 void	print_lst(t_list *a, t_list *b);
 void	rra(t_list *a);
+void	clean_b(t_list *a, t_list *b);
+int		is_sorted(t_list *a);
+int		count_bit(int n);
+void	quick_sort(t_list *a);
+void	sort_n1(t_list *a, t_list *b);
+void	sort_n2(t_list *a, t_list *b);
+void	quick_sort_5(t_list *a, t_list *b);
+void	quick_sort_4(t_list *a, t_list *b);
+void	sort(t_list *a, t_list *b, int len_stack);
 
 #endif

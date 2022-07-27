@@ -4,13 +4,14 @@
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
-/*                                                            +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 16:15:19 by mrollo            #+#    #+#             */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/27 16:08:21 by mrollo            #+#    #+#             */
+/*   Updated: 2022/07/27 17:48:09 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	clean_b(t_list *a, t_list *b)
+/*void	clean_b(t_list *a, t_list *b)
 {
 	t_list *temp;
 	int i;
@@ -72,7 +73,6 @@ void	quick_sort(t_list *a, int len_stack)
 	}
 	else if (len_stack == 3)
 	{
-		printf("detro de sort\n");
 		if (a->next->position > a->next->next->position && a->next->position > last->position && last->position > a->next->next->position)
 			ra(a);
 		else if (a->next->position < a->next->next->position && last->position < a->next->position)
@@ -81,9 +81,7 @@ void	quick_sort(t_list *a, int len_stack)
 			ra(a);
 		}
 		else if (a->next->position > a->next->next->position && last->position > a->next->position)
-		{
 			sa(a);
-		}
 		else if (a->next->position < last->position && a->next->next->position > last->position)
 		{
 			sa(a);
@@ -215,7 +213,7 @@ void	sort(t_list *a, t_list *b, int len_stack)
 		i++;
 	}
 }
-
+*/
 int	main(int argc, char *argv[])
 {
 	int	len_stack;
@@ -284,10 +282,15 @@ int	main(int argc, char *argv[])
 		}
 		free (stack_i);
 		free (tab);
-		if (len_stack <= 3)
-			quick_sort(a, len_stack);
+		if (len_stack == 2)
+		{
+			if (a->next->position > a->next->next->position)
+				sa(a);
+		}
+		else if (len_stack == 3)
+			quick_sort(a);
 		else if (len_stack == 4)
-			quick_sort_4(a, b); //PROBLEMAS!!!!
+			quick_sort_4(a, b);
 		else if (len_stack == 5)
 			quick_sort_5(a, b);
 		else
