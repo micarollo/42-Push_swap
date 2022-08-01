@@ -6,251 +6,103 @@
 /*   By: mrollo <mrollo@student.42barcelon...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:08:21 by mrollo            #+#    #+#             */
-/*   Updated: 2022/07/27 17:48:09 by mrollo           ###   ########.fr       */
+/*   Updated: 2022/08/01 17:35:57 by mrollo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-/*void	clean_b(t_list *a, t_list *b)
+static int	ft_clean_atoi(const char *nptr)
 {
-	t_list *temp;
-	int i;
-	int count;
+	int	i;
 
 	i = 0;
-	temp = b->next;
-	while (temp != NULL)
-	{
-		temp = temp->next;
+	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\v'
+		|| nptr[i] == '\f' || nptr[i] == '\r' || nptr[i] == '\t')
 		i++;
-	}
-	count = 0;
-	while (count < i)
-	{
-		pa(a, b);
-		count++;
-	}
-}
-
-int is_sorted(t_list *a)
-{
-	t_list *temp;
-
-	temp = a->next;
-	while (temp->next != NULL)
-	{
-		if (temp->position > temp->next->position)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
-}
-
-int	count_bit(int n)
-{
-	int i;
-	int temp;
-
-	i = 0;
-	while (n)
-	{
-		temp = n & 1;
-		i++;
-		n = n >> 1;
-	}
 	return (i);
 }
 
-void	quick_sort(t_list *a, int len_stack)
+long int	ft_atoi(const char *nptr)
 {
-	t_list *last;
+	long int				i;
+	long int				n;
+	long int	result;
 
-	last = ft_lstlast(a); 
-	if (len_stack == 2)
+	n = 1;
+	result = 0;
+	i = ft_clean_atoi(nptr);
+	if (nptr[i] == '-')
 	{
-		if (a->next->position > a->next->next->position)
-			sa(a);
-	}
-	else if (len_stack == 3)
-	{
-		if (a->next->position > a->next->next->position && a->next->position > last->position && last->position > a->next->next->position)
-			ra(a);
-		else if (a->next->position < a->next->next->position && last->position < a->next->position)
-		{
-			ra(a);
-			ra(a);
-		}
-		else if (a->next->position > a->next->next->position && last->position > a->next->position)
-			sa(a);
-		else if (a->next->position < last->position && a->next->next->position > last->position)
-		{
-			sa(a);
-			ra(a);
-		}
-		else if (a->next->position > a->next->next->position && a->next->next->position > last->position)
-		{
-			ra(a);
-			sa(a);
-		}
-	}
-}
-
-void	sort_n1(t_list *a, t_list *b)
-{
-	t_list *last;
-	t_list *first;
-
-	first = a->next;
-    last = ft_lstlast(a);
-	if (b->next->position < first->position)
-		pa(a, b);
-	else if (b->next->position > last->position)
-	{
-		pa(a, b);
-		ra(a);
-	}
-    else
-	{
-		if (b->next->position > a->next->position && b->next->position < a->next->next->position)
-		{
-			pa(a, b);
-			sa(a);
-		}
-		else
-		{
-			rra(a);
-			pa(a, b);
-			ra(a);
-			ra(a);
-		}
-    }
-		
-}
-
-void    sort_n2(t_list *a, t_list *b)
-{
-	t_list *last;
-    t_list *first;
-
-    first = a->next;
-    last = ft_lstlast(a);
-    if (b->next->position < first->position)
-        pa(a, b);
-    else if (b->next->position > last->position)
-    {
-        pa(a, b);
-        ra(a);
-    }
-	else if (b->next->position > a->next->next->next->position)
-	{
-        rra(a);
-        pa(a, b);
-        ra(a);
-        ra(a);
-	}
-	else
-	{
-		if (b->next->position > a->next->position && b->next->position < a->next->next->position)
-        {
-            pa(a, b);
-            sa(a);
-        }
-		else
-		{
-			ra(a);
-			pa(a, b);
-			sa(a);
-			rra(a);
-		}
-	}
-		
-}
-
-void	quick_sort_5(t_list *a, t_list *b)
-{
-	pb(a, b);
-	pb(a, b);
-	quick_sort(a, 3);
-	sort_n1(a, b);
-	sort_n2(a, b);
-}
-
-void	quick_sort_4(t_list *a, t_list *b)
-{
-	pb(a, b);
-    pb(a, b);
-	printf("aqui\n");
-    quick_sort(a, 3);
-	printf("sort\n");
-	sort_n1(a, b);
-}
-
-void	sort(t_list *a, t_list *b, int len_stack)
-{
-	int	bit;
-	int i;
-	int j;
-	int n;
-	int temp;
-
-	bit = count_bit(len_stack);
-	i = 0;
-	while (is_sorted(a) == 0 && i < bit)
-	{
-		j = 0;
-		while (j < len_stack)
-		{
-			n = a->next->position;
-			n = n >> i;
-			temp = n & 1;
-			if (temp)
-				ra(a);
-			else
-				pb(a, b);
-			j++;
-		}
-		clean_b(a, b);
+		n = n * -1;
 		i++;
 	}
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + (nptr[i] - 48);
+		i++;
+	}
+	return (result * n);
 }
-*/
+
 int	main(int argc, char *argv[])
 {
-	int	len_stack;
-	int *stack_i;
-	int *stack_i_copy;
-	int j;
-	int k;
-	int num;
-	int i;
-	int *tab;
-	t_list *a;
-	t_list *b;
-	t_list *new;
-	int y;
-//	t_list *temp;
+	int			len_stack;
+	int 		*stack_i;
+	int			*stack_i_copy;
+	int 		j;
+	int 		k;
+	long int	num;
+	int			i;
+	int			*tab;
+	t_list		*a;
+	t_list		*b;
+	t_list		*new;
+	int			y;
 
 	if (argc < 2)
 	{
-		printf("Error\n");
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	else
 	{
+		i = 1;
+		while (i < argc)
+		{
+			k = strlen(argv[i]);
+			if (k == 0)
+			{
+				write(2, "Error\n", 6);
+				exit (1);
+			}
+			is_numeric(argv[i]);
+			i++;
+		}
 		j = 0;
 		k = 1;
 		len_stack = argc - 1;
 		stack_i = (int *)malloc(argc * sizeof(int));
+		if (stack_i == NULL)
+			return NULL;
 		//CREANDO EL ARRAY DE LOS ARGUMENTOS
 		while (j < len_stack)
 		{
-			num = atoi(argv[k]);
-			stack_i[j] = num;
+			num = ft_atoi(argv[k]);
+			if (num > INT_MAX || num < INT_MIN)
+			{
+				write(2, "Error\n", 6);
+				exit (1);
+			}
+			stack_i[j] = (int)num;
 			j++;
 			k++;
 		}
 		check_doubles(stack_i, len_stack);
 		stack_i_copy = (int *)malloc(argc * sizeof(int));
+		if (stack_i_copy == NULL)
+			return NULL;
 		//COPIA DE STACK_I
 		i = 0;
 		while (i < len_stack)
@@ -259,11 +111,15 @@ int	main(int argc, char *argv[])
 			i++;
 		}
 		tab = (int *)malloc(len_stack * sizeof(int));
+		if (tab == NULL)
+			return NULL;
 		tab = ft_sort_int_tab(stack_i_copy, len_stack);
 		//free (stack_i_copy);
 		//INI STACK
 		a = (t_list *)malloc(sizeof(t_list));
 		b = (t_list *)malloc(sizeof(t_list));
+		if (a == NULL || b == NULL)
+			return NULL;
 		i = 0;
 		while (i < len_stack)
 		{
@@ -296,6 +152,6 @@ int	main(int argc, char *argv[])
 		else
 			sort(a, b, len_stack);
 		//IMPRIMIR CONTENIDO LISTAS
-		print_lst(a, b);
+		//print_lst(a, b);
 	}
 }
